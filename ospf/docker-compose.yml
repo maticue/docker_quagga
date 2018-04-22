@@ -45,6 +45,106 @@ services:
         ipv6_address: 2001:bbbb:bbbb:1::1
       nr28:
         ipv6_address: 2001:bbbb:cccc:1::1
+  r3:
+    build: .
+    volumes:
+      - ./volumes/quagga/r3/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r3/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10031:2601
+      #ospf ipv6
+      - 10033:2606
+    networks:
+      nr13:
+        ipv6_address: 2001:aaaa:aaaa:1::2
+  r4:
+    build: .
+    volumes:
+      - ./volumes/quagga/r4/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r4/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10041:2601
+      #ospf ipv6
+      - 10043:2606
+    networks:
+      nr24:
+        ipv6_address: 2001:bbbb:aaaa:1::2
+  r5:
+    build: .
+    volumes:
+      - ./volumes/quagga/r5/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r5/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10051:2601
+      #ospf ipv6
+      - 10053:2606
+    networks:
+      nr15: 2001:aaaa:bbbb:1::2
+      nrh511: 2001:aaaa:ffff:1::1
+      nr57: 2001:aaaa:dddd:1::2
+  r6:
+    build: .
+    volumes:
+      - ./volumes/quagga/r6/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r6/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10061:2601
+      #ospf ipv6
+      - 10063:2606
+    networks:
+      nr26: 2001:bbbb:bbbb:1::2
+      nrh612: 2001:bbbb:ffff:1::1
+      nr68: 2001:bbbb:dddd:1::2
+  r7:
+    build: .
+    volumes:
+      - ./volumes/quagga/r7/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r7/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10071:2601
+      #ospf ipv6
+      - 10073:2606
+    networks:
+      nr17: 2001:aaaa:cccc:1::2
+      nrh713: 2001:aaaa:eeee:1::1
+      nr57: 2001:aaaa:dddd:1::1
+  r8:
+    build: .
+    volumes:
+      - ./volumes/quagga/r8/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./volumes/quagga/r8/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./volumes/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+    image: ospf:20180419
+    privileged: true
+    ports:
+      #admin
+      - 10081:2601
+      #ospf ipv6
+      - 10083:2606
+    networks:
+      nr28: 2001:bbbb:cccc:1::2
+      nrh814: 2001:bbbb:eeee:1::1
+      nr68: 2001:bbbb:dddd:1::1
 
 networks:
   nr12:
