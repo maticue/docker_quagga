@@ -91,9 +91,12 @@ services:
       #ospf ipv6
       - 10053:2606
     networks:
-      nr15: 2001:aaaa:bbbb:1::2
-      nrh511: 2001:aaaa:ffff:1::1
-      nr57: 2001:aaaa:dddd:1::2
+      nr15:
+        ipv6_address: 2001:aaaa:bbbb:1::2
+      nrh511:
+        ipv6_address: 2001:aaaa:ffff:1::1
+      nr57:
+        ipv6_address: 2001:aaaa:dddd:1::2
   r6:
     build: .
     volumes:
@@ -108,9 +111,12 @@ services:
       #ospf ipv6
       - 10063:2606
     networks:
-      nr26: 2001:bbbb:bbbb:1::2
-      nrh612: 2001:bbbb:ffff:1::1
-      nr68: 2001:bbbb:dddd:1::2
+      nr26:
+        ipv6_address: 2001:bbbb:bbbb:1::2
+      nrh612:
+        ipv6_address: 2001:bbbb:ffff:1::1
+      nr68:
+        ipv6_address: 2001:bbbb:dddd:1::2
   r7:
     build: .
     volumes:
@@ -125,9 +131,12 @@ services:
       #ospf ipv6
       - 10073:2606
     networks:
-      nr17: 2001:aaaa:cccc:1::2
-      nrh713: 2001:aaaa:eeee:1::1
-      nr57: 2001:aaaa:dddd:1::1
+      nr17:
+        ipv6_address: 2001:aaaa:cccc:1::2
+      nrh713:
+        ipv6_address: 2001:aaaa:eeee:1::1
+      nr57:
+        ipv6_address: 2001:aaaa:dddd:1::1
   r8:
     build: .
     volumes:
@@ -142,9 +151,12 @@ services:
       #ospf ipv6
       - 10083:2606
     networks:
-      nr28: 2001:bbbb:cccc:1::2
-      nrh814: 2001:bbbb:eeee:1::1
-      nr68: 2001:bbbb:dddd:1::1
+      nr28:
+        ipv6_address: 2001:bbbb:cccc:1::2
+      nrh814:
+        ipv6_address: 2001:bbbb:eeee:1::1
+      nr68:
+        ipv6_address: 2001:bbbb:dddd:1::1
 
 networks:
   nr12:
