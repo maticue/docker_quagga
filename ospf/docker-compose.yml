@@ -15,11 +15,14 @@ services:
       #ospf ipv6
       - 10013:2606
     networks:
-      oam:
-        ipv6_address: 2001::11
-      nr1:
-        ipv6_address: 2001:aaaa:aaaa::11
-          
+      nr12:
+        ipv6_address: 2001:aaaa:1:1::1
+      nr13:
+        ipv6_address: 2001:aaaa:aaaa:1::1
+      nr15:
+        ipv6_address: 2001:aaaa:bbbb:1::1
+      nr17:
+        ipv6_address: 2001:aaaa:cccc:1::1
   r2:
     build: .
     volumes:
@@ -34,30 +37,104 @@ services:
       #ospf ipv6
       - 10023:2606
     networks:
-      oam:
-        ipv6_address: 2001::12
-      nr2:
-        ipv6_address: 2001:bbbb:bbbb::11
+      nr12:
+        ipv6_address: 2001:aaaa:1:1::2
+      nr24:
+        ipv6_address: 2001:bbbb:aaaa:1::1
+      nr26:
+        ipv6_address: 2001:bbbb:bbbb:1::1
+      nr28:
+        ipv6_address: 2001:bbbb:cccc:1::1
 
 networks:
-  oam:
+  nr12:
     driver: "bridge"
     enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: 2001::/64
-  nr1:
+        - subnet: 2001:aaaa:1:1::/64
+  nr13:
     driver: "bridge"
     enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: 2001:aaaa:aaaa::/64
-  nr2:
+        - subnet: 2001:aaaa:aaaa:1::/64
+  nr15:
     driver: "bridge"
     enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: 2001:bbbb:bbbb::/64
+        - subnet: 2001:aaaa:bbbb:1::/64
+  nr17:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:aaaa:cccc:1::/64
+  nr57:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:aaaa:dddd:1::/64
+  nr24:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:aaaa:1::/64
+  nr26:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:bbbb:1::/64
+  nr28:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:cccc:1::/64
+  nr68:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:dddd:1::/64
+  nrh511:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:aaaa:ffff:1::/64
+  nrh713:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:aaaa:eeee:1::/64
+  nrh612:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:ffff:1::/64
+  nrh814:
+    driver: "bridge"
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 2001:bbbb:eeee:1::/64
