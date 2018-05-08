@@ -7,8 +7,8 @@ services:
       - ./volumes/bgp/b1/zebra.conf:/etc/quagga/zebra.conf:ro
       - ./volumes/bgp/b1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
       - ./volumes/bgp/b1/bgpd.conf:/etc/quagga/bgpd.conf:ro
-      - ./volumes/bgp/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    image: bgp:20180426
+      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+    image: bgp:20180508
     privileged: true
     ports:
       #admin
@@ -28,8 +28,8 @@ services:
       - ./volumes/bgp/b2/zebra.conf:/etc/quagga/zebra.conf:ro
       - ./volumes/bgp/b2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
       - ./volumes/bgp/b2/bgpd.conf:/etc/quagga/bgpd.conf:ro
-      - ./volumes/bgp/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    image: bgp:20180426
+      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+    image: bgp:20180508
     privileged: true
     ports:
       #admin
@@ -49,8 +49,8 @@ services:
     volumes:
       - ./volumes/ospf/r1/zebra.conf:/etc/quagga/zebra.conf:ro
       - ./volumes/ospf/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/ospf/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    image: ospf:20180419
+      - ./volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
+    image: ospf:20180508
     privileged: true
     ports:
       #admin
@@ -68,8 +68,8 @@ services:
     volumes:
       - ./volumes/ospf/r2/zebra.conf:/etc/quagga/zebra.conf:ro
       - ./volumes/ospf/r2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/ospf/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
-    image: ospf:20180419
+      - ./volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
+    image: ospf:20180508
     privileged: true
     ports:
       #admin

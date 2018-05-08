@@ -1,15 +1,18 @@
 # Quagga OSPF
 #
-# VERSION 0.0.1
+# VERSION 0.0.2
 
-FROM golang:1.8-jessie
+FROM alpine:latest
 
-MAINTAINER Cuenca del Rey, Matias <matias.cuenca@unc.edu.ar>
+LABEL maintainer.name="Natasha Tomattis" \
+      maintainer.email="natitomattis@gmail.com" \
+      version="0.0.2" \
+      description="Quagga OSPF - apline based image"
 
-RUN apt-get update
-RUN apt-get install -qy --no-install-recommends supervisor quagga telnet tcpdump
+RUN apk update
+RUN apk add supervisor quagga heimdal tcpdump
 
-RUN sed -i 's/ospfd6=no/ospfd6=yes/g' /etc/quagga/daemons
-RUN sed -i 's/zebra=no/zebra=yes/g' /etc/quagga/daemons
+RUN echo "ospfd6=yes" >> /etc/quagga/daemons
+RUN echo "zebra=yes" >> /etc/quagga/daemons
 
 ENTRYPOINT ["/usr/bin/supervisord"]
