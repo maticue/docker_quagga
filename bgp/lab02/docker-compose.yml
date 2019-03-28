@@ -2,12 +2,12 @@ version: '2.1'
 
 services:
   b1:
-    build: ./bgp/.
+    build: ./../images/bgp/.
     volumes:
-      - ./volumes/bgp/b1/zebra.conf:/etc/quagga/zebra.conf:ro
-      - ./volumes/bgp/b1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/bgp/b1/bgpd.conf:/etc/quagga/bgpd.conf:ro
-      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+      - ./../volumes/bgp/b1/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./../volumes/bgp/b1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./../volumes/bgp/b1/bgpd.conf:/etc/quagga/bgpd.conf:ro
+      - ./../volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
     image: bgp:20180508
     privileged: true
     ports:
@@ -23,12 +23,12 @@ services:
       nr1b1:
         ipv6_address: 2001:aaaa:aaaa::5
   b2:
-    build: ./bgp/.
+    build: ./../images/bgp/.
     volumes:
-      - ./volumes/bgp/b2/zebra.conf:/etc/quagga/zebra.conf:ro
-      - ./volumes/bgp/b2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/bgp/b2/bgpd.conf:/etc/quagga/bgpd.conf:ro
-      - ./volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
+      - ./../volumes/bgp/b2/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./../volumes/bgp/b2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./../volumes/bgp/b2/bgpd.conf:/etc/quagga/bgpd.conf:ro
+      - ./../volumes/bgp/supervisord.conf:/etc/supervisord.conf:ro
     image: bgp:20180508
     privileged: true
     ports:
@@ -45,11 +45,11 @@ services:
         ipv6_address: 2001:bbbb:bbbb::6
 
   r1:
-    build: ./ospf/.
+    build: ./../images/ospf/.
     volumes:
-      - ./volumes/ospf/r1/zebra.conf:/etc/quagga/zebra.conf:ro
-      - ./volumes/ospf/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
+      - ./../volumes/ospf/r1/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./../volumes/ospf/r1/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./../volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
     image: ospf:20180508
     privileged: true
     ports:
@@ -64,12 +64,12 @@ services:
         ipv6_address: 2001:aaaa:1111::10
           
   r2:
-    build: ./ospf/.
-    volumes:
-      - ./volumes/ospf/r2/zebra.conf:/etc/quagga/zebra.conf:ro
-      - ./volumes/ospf/r2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
-      - ./volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
+    build: ./../images/ospf/.
     image: ospf:20180508
+    volumes:
+      - ./../volumes/ospf/r2/zebra.conf:/etc/quagga/zebra.conf:ro
+      - ./../volumes/ospf/r2/ospf6d.conf:/etc/quagga/ospf6d.conf:ro
+      - ./../volumes/ospf/supervisord.conf:/etc/supervisord.conf:ro
     privileged: true
     ports:
       #admin
@@ -81,6 +81,29 @@ services:
         ipv6_address: 2001:bbbb:bbbb::10
       nr2:
         ipv6_address: 2001:bbbb:2222::10
+
+  mail_server:
+    image: mailhog/mailhog
+    privileged: true
+    user: root
+    ports:
+      # SMTP
+      # - 1025:1025
+      # Web UI
+      - 8025:8025
+    networks:
+      nr2:
+        ipv6_address: 2001:bbbb:2222::11
+
+  mail_client:
+    image: xueshanf/swaks
+    command: tail -f /dev/null
+    tty: true
+    privileged: true
+    networks:
+      nr1:
+        ipv6_address: 2001:aaaa:1111::11
+
 
 networks:
   oam:
